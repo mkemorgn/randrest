@@ -1,6 +1,8 @@
 import os
 import requests
 import json
+import random
+import numpy as np
 from pprint import pprint
 from dotenv import load_dotenv
 
@@ -21,10 +23,10 @@ params = {
     'term':'restaurants',
     'location': location,
     'categories': categories, 
-    'radius': 30000,
+    'radius': 16094,
     #'sort_by': 'rating',
     'open_now': True,
-    'limit': 5,
+    #'limit': 5,
     }
 
 def get_restaurant():
@@ -41,8 +43,13 @@ def get_restaurant():
     
     # loops through json and returns business names
     name = data['businesses'][0]['name']
+    
+    arr = []
     for i in data['businesses']:
-        print(i['name'])
+        restaurantList = i['name']
+        
+        arr.append(restaurantList)
+    print(arr)
     return;
 
 
