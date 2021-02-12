@@ -49,7 +49,9 @@ def get_restaurant():
         restaurantList = i['name']
         
         arr.append(restaurantList)
-    print(arr)
+
+    rand = random.choice(arr)
+    print(rand)
     return;
 
 
