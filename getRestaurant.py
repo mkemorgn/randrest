@@ -13,20 +13,24 @@ headers = {'Authorization': 'Bearer %s' % api_key}
 url='https://api.yelp.com/v3/businesses/search'
 
 # In the dictionary, term can take values like food, cafes or businesses like McDonalds
-params = {'term':'seafood','location':'New York City'}
+location = input("Where do you want to search? ")
+params = {'term':'seafood','location': location, 'limit':1}
 
 def get_restaurant():
     # Making a get request to the API
     req=requests.get(url, params=params, headers=headers)
 
     # Making a get request to the API
-    req=requests.get(url, params=params, headers=headers)
+    response=requests.get(url, params=params, headers=headers)
 
-    # proceed only if the status code is 200
-    print('The status code is {}'.format(req.status_code))
+    #status code for debugging
+    #print('The status code is {}'.format(req.status_code))
 
-    parsed_data = json.loads(req.text)
-    print(json.dumps(parsed_data, indent=4))
+
+    data = response.json()
+    #parsed_data = json.loads(req.text)
+    #json_data = req.json()
+    print("Your restaurant is: " + data['businesses'][0]['name'])
     return;
 
 
